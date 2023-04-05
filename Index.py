@@ -161,14 +161,14 @@ def open_google_and_search():
 
 # Alex còn biết gửi mail mà không cần bật gmail á, thấy giỏi hôn nè ^^
 def send_email(text):
-    with open('conversation.json', encoding='utf-8') as f:
+    with open('mail.json', encoding='utf-8') as f:
         data = json.load(f)
     speak('Bạn gửi email cho ai nhỉ')
     recipient = get_text()
     for name in data:
         if name in recipient:  # 'anh' ở đây là keywords để máy tiếp tục gửi email cho bạn. Bạn có thể thay cái keywords này
             speak('Nội dung bạn muốn gửi là gì')
-            time.sleep(2)
+            # time.sleep(2)
             content = get_text()
             mail = smtplib.SMTP('smtp.gmail.com', 587)
             mail.ehlo()
@@ -176,13 +176,14 @@ def send_email(text):
             mail.login('lachibang20@gmail.com',
                        '')  # 'xyz' ở đây là địa chỉ email của bạn (địa chỉ email gửi), 'abc' là mật khẩu của email đó
             mail.sendmail('lachibang20@gmail.com',
-                          data["name"], content.encode(
+                          data[name.lower()], content.encode(
                     'utf-8'))  # 'xyz' ở đây cũng như bên trên, nhưng '123' là địa chỉ email nhận (email được bạn gửi thư)
             mail.close()
             speak('Email của bạn vùa được gửi. Bạn check lại email nhé hihi.')
-            time.sleep(3)
-        else:
-            speak('Bot không hiểu bạn muốn gửi email cho ai. Bạn nói lại được không')
+            # time.sleep(3)
+            break
+    else:
+        speak('Bot không hiểu bạn muốn gửi email cho ai. Bạn nói lại được không')
 
 
 # Muốn đi chơi mà sợ trời mưa thì hãy xem dự báo thời tiết nha, nhớ gọi Alex đó
@@ -229,7 +230,7 @@ def current_weather():
 # Relax hôn, nghe nhạc trên Youtube nè ^^
 def play_song():
     speak('Xin mời bạn chọn tên bài hát')
-    time.sleep(1)
+    # time.sleep(1)
     mysong = get_text()
     while True:
         result = YoutubeSearch(mysong, max_results=10).to_dict()
