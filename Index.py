@@ -451,7 +451,7 @@ def assistant():
             elif "chụp ảnh" in text or "chụp" in text:
                 take_picture()
             else:
-                speak("Bạn cần Bot giúp gì ạ?")
+                speak("Bot không hiểu bạn nói gì ạ")
 
 
 assistant()
