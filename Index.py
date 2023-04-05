@@ -33,7 +33,7 @@ wikipedia.set_lang('vi')
 language = 'vi'
 path = ChromeDriverManager().install()
 robot_ear = speech_recognition.Recognizer()
-openai.api_key = "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"
+openai.api_key = ""
 
 
 # Text - to - speech: Chuyển đổi văn bản thành giọng nói
@@ -174,7 +174,7 @@ def send_email(text):
             mail.ehlo()
             mail.starttls()
             mail.login('lachibang20@gmail.com',
-                       'edpwyibpinmhkbbl')  # 'xyz' ở đây là địa chỉ email của bạn (địa chỉ email gửi), 'abc' là mật khẩu của email đó
+                       '')  # 'xyz' ở đây là địa chỉ email của bạn (địa chỉ email gửi), 'abc' là mật khẩu của email đó
             mail.sendmail('lachibang20@gmail.com',
                           data["name"], content.encode(
                     'utf-8'))  # 'xyz' ở đây cũng như bên trên, nhưng '123' là địa chỉ email nhận (email được bạn gửi thư)
